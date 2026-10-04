@@ -17,7 +17,7 @@ The program processes the trajectory of an aerodynamic glider over discrete time
 
 ## Sample Project Telemetry Output
 ```text
-=== Airbus Apprentice Paper Plane Simulator ===
+Paper Plane Simulator
 Enter paper weight in grams (e.g., 4.5): 4.5
 Enter launch speed in m/s (e.g., 8.0): 8.0
 Enter launch angle in degrees (e.g., 15.0): 15.0
