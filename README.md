@@ -1,4 +1,4 @@
-# Paper Aeroplane Aero-Simulator
+# Paper Aeroplane Simulator
 
 A lightweight, interactive Java application, combining programming and kinematics, built to simulate and analyse flight trajectories based on custom aerodynamic and velocity inputs.
 
