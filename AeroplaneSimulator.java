@@ -5,10 +5,10 @@ public class AeroplaneSimulator {
 
     // Main method
     public static void main(String[] args) {
-        // Initialise Scanner
+        // Initialize scanner
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("=== Paper Plane Simulator ===");
+        System.out.println("Paper Plane Simulator");
         
         // Prompting and capturing custom real-time data inputs
         System.out.print("Enter paper weight in grams (e.g., 4.5): ");
@@ -19,29 +19,33 @@ public class AeroplaneSimulator {
         
         System.out.print("Enter launch angle in degrees (e.g., 15.0): ");
         double launchAngle = scanner.nextDouble();
+        
+        // Capturing the initial release height
+        System.out.print("Enter initial launch height in meters (e.g., 1.6): ");
+        double launchHeight = scanner.nextDouble();
 
         System.out.println("\nInitializing simulation parameters...");
-        System.out.println("Parameters: Weight=" + weightGrams + "g, Speed=" + launchVelocity + "m/s, Angle=" + launchAngle + "°");
+        System.out.println("Parameters: Weight=" + weightGrams + "g, Speed=" + launchVelocity + "m/s, Angle=" + launchAngle + "°, Height=" + launchHeight + "m");
 
         // Execute the simulation with the user's custom values
-        simulateFlight(weightGrams, launchVelocity, launchAngle);
+        simulateFlight(weightGrams, launchVelocity, launchAngle, launchHeight);
         
-        //Closing the scanner resource after use
+        // Closing the scanner resource after use
         scanner.close();
     }
 
-    // A straightforward method that computes and prints the flight trajectory
-    public static void simulateFlight(double weightGrams, double launchVelocity, double launchAngle) {
+    // Flight simulator method
+    public static void simulateFlight(double weightGrams, double launchVelocity, double launchAngle, double launchHeight) {
         // Converting degrees to radians for trigonometric functions
         double angleRad = Math.toRadians(launchAngle);
         
-        // Resolving the initial velocity vector into independent 2D components (x and y)
+        //Resolving the initial velocity vector into independent 2D components (x and y)
         double vx = launchVelocity * Math.cos(angleRad); // Horizontal velocity component
         double vy = launchVelocity * Math.sin(angleRad); // Vertical velocity component
         
         // Initial coordinate conditions
-        double x = 0.0; // Starts at 0 meters horizontal distance
-        double y = 1.5; // Starts at 1.5 meters altitude (simulating average human release height)
+        double x = 0.0;          // Starts at 0 meters horizontal distance
+        double y = launchHeight; // baseline altitude based on user input
         
         double time = 0.0; // Master clock tracking flight duration
         double dt = 0.1;   // Time step interval (calculates position updates every 0.1 seconds)
@@ -52,7 +56,7 @@ public class AeroplaneSimulator {
         double dragCoefficient = 0.05; 
 
         System.out.println("\n--- Flight Simulation Started ---");
-        // printf for clean, formatted numerical telemetry strings
+        // Using printf for clean, formatted numerical telemetry strings
         System.out.printf("Time: %.1fs | X: %.2fm | Y: %.2fm\n", time, x, y);
 
         // While loop continues executing until the plane hits the ground (y <= 0)
